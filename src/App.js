@@ -1,9 +1,24 @@
+import React, { useState } from 'react';
+import FunctionContextComponent from './components/FunctionContextComponent';
+import ClassContextComponent from './components/ClassContextComponent';
+
+export const ThemeContext = React.createContext();
 
 function App() {
-  return (
-    <div>
+  const [darkTheme, setDarkTheme] = useState();
 
-    </div>
+  function toggleTheme() {
+    setDarkTheme(prevDarkTheme => !prevDarkTheme);
+  }
+
+  return (
+    <>
+      <ThemeContext.Provider value={darkTheme}>
+        <button onClick={toggleTheme}>Toggle Theme</button>
+        <FunctionContextComponent />
+        <ClassContextComponent />
+      </ThemeContext.Provider>
+    </>
   );
 }
 
